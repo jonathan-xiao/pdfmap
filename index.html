@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PDF Map Pins</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.31.0/dist/tabler-icons.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="app">
+    <div id="toolbar">
+      <span id="app-title">PDF Map Pins</span>
+      <div class="sep"></div>
+      <button id="btn-upload"><i class="ti ti-upload" aria-hidden="true"></i> Load PDF</button>
+      <input type="file" id="file-input-tb" accept=".pdf">
+      <div class="sep"></div>
+      <button id="btn-zoom-out" disabled><i class="ti ti-minus" aria-hidden="true"></i></button>
+      <span id="zoom-label">100%</span>
+      <button id="btn-zoom-in" disabled><i class="ti ti-plus" aria-hidden="true"></i></button>
+      <button id="btn-zoom-fit" disabled><i class="ti ti-maximize" aria-hidden="true"></i></button>
+      <div class="sep"></div>
+      <button id="mode-pin" disabled><i class="ti ti-map-pin" aria-hidden="true"></i> Drop pin</button>
+      <div class="sep"></div>
+      <button id="btn-export" disabled><i class="ti ti-download" aria-hidden="true"></i> Export</button>
+    </div>
+ 
+    <div id="main">
+      <div id="canvas-area">
+        <div id="drop-zone">
+          <i class="ti ti-file-type-pdf" aria-hidden="true"></i>
+          <span>Drop a PDF map here</span>
+          <label>Browse file <input type="file" id="file-input" accept=".pdf"></label>
+        </div>
+        <div id="map-container">
+          <canvas id="pdf-canvas"></canvas>
+        </div>
+        <div id="pin-modal">
+          <h3>New pin</h3>
+          <input type="text" id="pin-label-input" placeholder="Label this location..." maxlength="60">
+          <div class="color-row" id="color-row"></div>
+          <div class="btn-row">
+            <button id="btn-cancel-pin">Cancel</button>
+            <button id="btn-save-pin">Save</button>
+          </div>
+        </div>
+      </div>
+ 
+      <div id="sidebar">
+        <div id="sidebar-header">
+          Saved pins <span id="pin-count">0</span>
+        </div>
+        <div id="pin-list">
+          <div id="no-pins">
+            <i class="ti ti-map-pin-off" aria-hidden="true"></i>
+            No pins yet
+          </div>
+        </div>
+      </div>
+    </div>
+ 
+    <div id="page-controls">
+      <button id="btn-prev-page"><i class="ti ti-chevron-left" aria-hidden="true"></i></button>
+      <span id="page-info">Page 1 of 1</span>
+      <button id="btn-next-page"><i class="ti ti-chevron-right" aria-hidden="true"></i></button>
+    </div>
+  </div>
+ 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+  <script src="config.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
