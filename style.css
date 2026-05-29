@@ -56,7 +56,17 @@ html, body { height: 100%; font-family: -apple-system, BlinkMacSystemFont, 'Sego
 #toolbar button:hover { background: var(--bg-secondary); }
 #toolbar button:disabled { opacity: 0.38; cursor: default; pointer-events: none; }
 #toolbar button i { font-size: 15px; }
-#zoom-label { font-size: 13px; color: var(--text-secondary); min-width: 46px; text-align: center; }
+.zoom-unit { font-size: 13px; color: var(--text-secondary); min-width: 10px; text-align: left; }
+.zoom-input {
+  width: 68px; padding: 5px 8px; font-size: 13px; text-align: right;
+  border-radius: var(--radius-md);
+  border: 0.5px solid var(--border-strong);
+  background: var(--bg-primary); color: var(--text-primary);
+  appearance: textfield;
+}
+.zoom-input::-webkit-outer-spin-button,
+.zoom-input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+#toolbar button + .zoom-input { margin-left: 2px; }
 .sep { width: 0.5px; height: 20px; background: var(--border); margin: 0 3px; flex-shrink: 0; }
  
 #mode-pin.active { background: var(--accent-bg); color: var(--accent); border-color: transparent; }

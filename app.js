@@ -21,7 +21,7 @@ const elements = {
   zoomOut: document.getElementById('btn-zoom-out'),
   zoomIn: document.getElementById('btn-zoom-in'),
   zoomFit: document.getElementById('btn-zoom-fit'),
-  zoomLabel: document.getElementById('zoom-label'),
+  zoomInput: document.getElementById('zoom-input'),
   pinMode: document.getElementById('mode-pin'),
   exportPins: document.getElementById('btn-export'),
   pagePrev: document.getElementById('btn-prev-page'),
@@ -83,7 +83,7 @@ function setToolbarEnabled(enabled) {
 }
 
 function updateZoomLabel() {
-  elements.zoomLabel.textContent = `${Math.round(state.scale * 100)}%`;
+  elements.zoomInput.value = String(Math.round(state.scale * 100));
 }
 
 function updatePageInfo() {
@@ -563,6 +563,22 @@ function zoomBy(delta) {
   renderPage();
 }
 
+function setZoomFromInput() {
+  if (!state.pdfDoc) {
+    return;
+  }
+
+  const percentage = Number(elements.zoomInput.value);
+  if (!Number.isFinite(percentage)) {
+    updateZoomLabel();
+    return;
+  }
+
+  state.zoomMode = 'manual';
+  state.scale = clamp(percentage / 100, MIN_ZOOM, MAX_ZOOM);
+  renderPage();
+}
+
 function fitToPage() {
   if (!state.pdfDoc) {
     return;
@@ -588,6 +604,12 @@ function bindEvents() {
   elements.zoomOut.addEventListener('click', () => zoomBy(-ZOOM_STEP));
   elements.zoomIn.addEventListener('click', () => zoomBy(ZOOM_STEP));
   elements.zoomFit.addEventListener('click', fitToPage);
+  elements.zoomInput.addEventListener('change', setZoomFromInput);
+  elements.zoomInput.addEventListener('keydown', (event) => {
+    if (event.key === 'Enter') {
+      setZoomFromInput();
+    }
+  });
   elements.pinMode.addEventListener('click', () => {
     if (!state.pdfDoc) {
       return;
@@ -668,7 +690,7 @@ function initialize() {
   clearDocumentState();
   setToolbarEnabled(false);
   setDropZoneVisible(true);
-  elements.zoomLabel.textContent = '100%';
+  elements.zoomInput.value = '100';
   elements.pinModal.style.display = 'none';
   elements.pageControls.classList.remove('visible');
 }
