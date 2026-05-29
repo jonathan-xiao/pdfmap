@@ -57,7 +57,7 @@ Recommended path:
 
 1. Push the repo to GitHub.
 2. Deploy the repo root as a static site on Netlify or Vercel.
-3. Add your Supabase URL and anon key in `app.js`.
+3. Copy `config.example.js` to `config.js` and add your real Supabase values there.
 4. Create the `map_pins` table above.
 5. Open the deployed URL and test loading a PDF, dropping a pin, and refreshing the page.
 
