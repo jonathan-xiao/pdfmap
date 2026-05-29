@@ -120,8 +120,8 @@ html, body { height: 100%; font-family: -apple-system, BlinkMacSystemFont, 'Sego
 .pin-dot-inner { width: 8px; height: 8px; border-radius: 50%; background: rgba(255,255,255,0.86); transform: rotate(45deg); }
 .pin-label {
   margin-top: 4px; font-size: 10px; font-weight: 700;
-  color: var(--text-primary); text-shadow: none;
-  background: rgba(255,255,255,0.88); border: 0.5px solid rgba(0,0,0,0.12);
+  color: #000; text-shadow: none;
+  background: #fff; border: 0.5px solid rgba(0,0,0,0.18);
   border-radius: 999px; padding: 1px 6px;
   white-space: nowrap; max-width: 140px;
   overflow: hidden; text-overflow: ellipsis;
